@@ -98,8 +98,11 @@ button:active{
 @media (max-width: 720px){
     #calculator{
         max-width: 380px;
-        height: 570px;
+        height: 525px;
         overflow: hidden;
+    }
+    #display{
+        font-size: 2.5rem;;
     }
     button{
         width: 70px;
@@ -118,8 +121,11 @@ button:active{
 @media (max-width: 320px){
     #calculator{
         max-width: 320px;
-        height: 530px;
+        height: 470px;
         overflow: hidden;
+    }
+    #display{
+        font-size: 2rem;;
     }
     button{
         width: 60px;

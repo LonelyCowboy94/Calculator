@@ -94,3 +94,30 @@ button:active{
 .operator-btn:active{
     background-color: rgb(250, 204, 120);
 }
+
+@media (max-width: 720px){
+#calculator{
+    font-family: Arial, sans-serif;
+    background-color: hsl(0, 0%, 15%);
+    border-radius: 15px;
+    max-width: 350px;
+    height: 560px;
+    overflow: hidden;
+    }
+
+button{
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    border: none;
+    background-color: hsl(0, 0%, 30%);
+    color: white;
+    font-size: 2.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    }
+
+#plus{
+    height: 140px;
+    }
+}

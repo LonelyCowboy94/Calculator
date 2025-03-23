@@ -12,27 +12,27 @@
 <body>
    
         <div id="calculator">
-            <input id="display" readonly>
+            <input type="text" id="display" readonly>
             <div id="keys">
-                <button onclick="clearDisplay()" class="firstRow">AC</button>
+                <button class="firstRow" id="ac">AC</button>
                 <button onclick="toggleSign()" class="firstRow">+/-</button>
-                <button onclick="appendToDisplay('%')" class="firstRow">%</button>
-                <button onclick="appendToDisplay('/')" class="operator-btn">/</button>
-                <button onclick="appendToDisplay('7')">7</button>
-                <button onclick="appendToDisplay('8')">8</button>
-                <button onclick="appendToDisplay('9')">9</button>
-                <button onclick="appendToDisplay('*')" class="operator-btn">X</button>
-                <button onclick="appendToDisplay('4')">4</button>
-                <button onclick="appendToDisplay('5')">5</button>
-                <button onclick="appendToDisplay('6')">6</button>
-                <button onclick="appendToDisplay('-')" class="operator-btn">-</button>
-                <button onclick="appendToDisplay('1')">1</button>
-                <button onclick="appendToDisplay('2')">2</button>
-                <button onclick="appendToDisplay('3')">3</button>
-                <button onclick="appendToDisplay('+')" id="plus" class="operator-btn">+</button>
-                <button onclick="appendToDisplay('.')" class="lastRow">.</button>
-                <button onclick="appendToDisplay('0')" class="lastRow">0</button>
-                <button onclick="calculate()" class="lastRow">=</button>
+                <button class="firstRow" id="percent">%</button>
+                <button class="operator-btn" id="devide">/</button>
+                <button id="seven">7</button>
+                <button id="eight">8</button>
+                <button id="nine">9</button>
+                <button class="operator-btn" id="multiply">X</button>
+                <button id="four">4</button>
+                <button id="five">5</button>
+                <button id="six">6</button>
+                <button class="operator-btn" id="minus">-</button>
+                <button id="one">1</button>
+                <button id="two">2</button>
+                <button id="three">3</button>
+                <button id="plus" class="operator-btn">+</button>
+                <button class="lastRow" id="dot">.</button>
+                <button class="lastRow" id="zero">0</button>
+                <button class="lastRow" id="equal">=</button>
                 
             </div>
         </div>

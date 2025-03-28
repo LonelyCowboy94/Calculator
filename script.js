@@ -1,4 +1,4 @@
-//TODO: fix calculation by pressing the operation button
+//TODO: fix dot behaviour
 //TODO: add keyboard support
 //TODO: add ON/OFF button
 //TODO: complete toggle positive/negative button
@@ -36,10 +36,23 @@ const multiply = (a, b) => a * b;
 const devide = (a, b) => a / b;
 const percent = (a) => a / 100;
 
-// const realCalculatorBehaviour = () => {
-//     display.value = "";
-//     setTimeout(display.value = calculation, 100);
-// }
+const realCalculatorBehaviour = () => { 
+    display.value = '';
+    setTimeout(() => {
+        try {
+            let expression = calculation.trim();
+            
+            if (/[+\-*/]$/.test(expression)) {
+                expression = expression.slice(0, -1);
+            }   
+            display.value = eval(expression);
+        }
+        catch (error) {
+            display.value = "Error";
+        }
+   }, 50)
+    }
+
 
 const displayDigit = (digit) => {
     if (calculation === "0") {
@@ -48,7 +61,7 @@ const displayDigit = (digit) => {
         calculation += digit;
     }
     console.log(calculation);
-}
+};
 
 const clearDisplay = () => {
     calculation = "0";
@@ -59,6 +72,7 @@ const removeOperator = (digit) => {
     if (/[+\-*\/]$/.test(calculation)) {
         display.value = "";
     }
+   
     displayDigit(String(digit));
     display.value = calculation.match(/-?\d+(\.\d+)?$/)[0];
 };
@@ -76,32 +90,33 @@ zeroButton.addEventListener('click', () => removeOperator(0));
 acButton.addEventListener('click' , () => {
     display.value = "";
     calculation = "0";
-    setTimeout(clearDisplay, 100);
+    setTimeout(clearDisplay, 50);
 });
 
-const calculate = () => {
-    const expression = calculation;
-    const numbers = expression.match(/-?\d+(\.\d+)?/g);
-    let result = parseFloat(numbers[0]);
-    for (let i = 0; i < operators?.length; i++) {
-        const number = parseFloat(numbers[i + 1]);
-        switch (operators[i]) {
-            case '+':
-                result = add(result, number);
-                break;
-            case '-':
-                result = subtract(result, number);
-                break;
-            case '*':
-                result = multiply(result, number);
-                break;
-            case '/':
-                result = devide(result, number);
-                break;
-        }
-    }
-    calculation = result.toString(); 
-};
+// const calculate = () => {
+//     const expression = calculation;
+//     const numbers = expression.match(/-?\d+(\.\d+)?/g);
+    
+//     let result = parseFloat(numbers[0]);
+//     for (let i = 0; i < operators?.length; i++) {
+//         const number = parseFloat(numbers[i + 1]);
+//         switch (operators[i]) {
+//             case '+':
+//                 result = add(result, number);
+//                 break;
+//             case '-':
+//                 result = subtract(result, number);
+//                 break;
+//             case '*':
+//                 result = multiply(result, number);
+//                 break;
+//             case '/':
+//                 result = devide(result, number);
+//                 break;
+//         }
+//     }
+//     calculation = result.toString(); 
+// };
 
 const updateDisplay = (operator) => {
     if (['+', '-', '*', '/'].includes(calculation[calculation.length - 1])) {
@@ -115,23 +130,26 @@ const updateDisplay = (operator) => {
 };
 
 percentButton.addEventListener('click', () => display.value = percent(display.value));
-dotButton.addEventListener('click', () => display.value += '.');
+dotButton.addEventListener('click', () => calculation += '.');
 plusButton.addEventListener('click', () => {
     updateDisplay('+');
+    realCalculatorBehaviour();
 });
 minusButton.addEventListener('click', () => {
     updateDisplay('-');
+    realCalculatorBehaviour();
 });
 multiplyButton.addEventListener('click', () => {
     updateDisplay('*');
+    realCalculatorBehaviour();
 });
 divideButton.addEventListener('click', () => {
     updateDisplay('/');
+    realCalculatorBehaviour();
 });
 
 
 
 equalButton.addEventListener('click', () => {
-    eval(calculation);
-    display.value = eval(calculation);
+    display.value = eval(calculation).toString();
 });

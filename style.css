@@ -18,8 +18,27 @@ align-items: center;
     background-color: hsl(0, 0%, 15%);
     border-radius: 15px;
     max-width: 500px;
-    height: 720px;
+    min-height: 580px;
     overflow: hidden;
+    box-shadow: 2px 2px 13px 2px rgba(0, 0, 0, 0.616);
+}
+
+#header{
+    margin-bottom: -10px;
+    display: flex;
+}
+
+#header h1 {
+    font-family: 'Great Vibes';
+    margin: 13px 0 0 20px;
+    color: rgba(192, 163, 0, 0.904);
+    text-shadow: 2px 2.5px 3px rgb(112, 95, 0), 1px 1px 3px rgb(0, 0, 0);
+}
+
+#display-div{
+    width: 390px;
+    height: 100px;
+    background-color: hsl(0, 0%, 20%);
 }
 
 #display{
@@ -92,6 +111,65 @@ button:active{
     background-color: rgb(250, 204, 120);
 }
 
+.slide-switch {
+    margin-top: 5px;
+    position: relative;
+    top: 10px;
+    left: 85px; 
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .slide-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+    box-shadow: 1px 1px 5px 1px rgba(160, 157, 0, 0.445);
+  }
+
+  .key {
+    box-shadow: -2px -2px 3px 2px rgba(68, 68, 68, 0.788);
+  }
+
+  .key:active{
+    transform: scale(0.98) translate(-2px, -1px);
+  }
+
+  .lastRow:active{
+    transform: translate(-3px, -81px);
+  }
+  
+  .slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    
+    background-color: #4CAF50;
+  }
+  
+  input:checked + .slider::before {
+    transform: translateX(26px);
+  }
+
 @media (max-width: 720px){
     #calculator{
         max-width: 380px;
@@ -115,11 +193,28 @@ button:active{
 }
 }
 
-@media (max-width: 320px){
+@media (max-width: 375px){
     #calculator{
-        max-width: 320px;
+        min-width: 375px;
         height: 470px;
         overflow: hidden;
+    }
+    #display-div{
+        max-width: 375px;
+    }
+}
+
+@media (max-width: 320px){
+    #calculator{
+        min-width: 320px;
+        min-height: 525px;
+        overflow: hidden;
+    }
+    .slide-switch{
+        left: 32px;
+    }
+    #display-div{
+        max-width: 320px;
     }
     #display{
         font-size: 2rem;;

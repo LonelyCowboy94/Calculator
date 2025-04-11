@@ -6,7 +6,11 @@
 const display = document.getElementById("display");
 display.value = "0";
 let calculation = "0";
+// calculation.slice(0, 15);
 
+const powerSwitch = document.getElementById("power-switch");
+const keys = document.getElementById("keys");
+const key = document.getElementsByClassName("key");
 const acButton = document.getElementById("ac");
 const percentButton = document.getElementById("percent");
 const divideButton = document.getElementById("devide");
@@ -26,9 +30,41 @@ const dotButton = document.getElementById("dot");
 const zeroButton = document.getElementById("zero");
 const equalButton = document.getElementById("equal");
 
-// TODO: figure out how to do percenage operation
+// TODO: figure out how to do percenage substraction operation
 // const numBefore = /(\d+)(+\-*\/)/g
 // const numAfter = /(+\-*\/)(\d+)/g
+
+const isOff = () => {
+    keys.style = "pointer-events: none"
+    display.style.display = "none";
+    console.log("iskljuceno");
+    powerSwitch.checked = false;
+};
+
+isOff();
+
+powerSwitch.addEventListener('change', () => {
+    if(powerSwitch.checked) {
+        display.style.display = "block";
+        keys.style = "pointer-events: auto";
+        display.value = "0";
+        calculation = "0";
+        console.log("ukljuceno");
+    }   else {
+        isOff();
+    }
+
+});
+
+Array.from(key).forEach((btn) => {
+    btn.addEventListener('click', () => {
+        let operationSign = calculation.replace(/\d/g, "");
+        if(display.value.length >= 15 + operationSign) {
+           
+           calculation = calculation.slice(0, 15) + operationSign;
+        }
+    });
+});
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -93,6 +129,7 @@ acButton.addEventListener('click' , () => {
     setTimeout(clearDisplay, 50);
 });
 
+// This code was used to calculate with integers
 // const calculate = () => {
 //     const expression = calculation;
 //     const numbers = expression.match(/-?\d+(\.\d+)?/g);
@@ -147,8 +184,6 @@ divideButton.addEventListener('click', () => {
     updateDisplay('/');
     realCalculatorBehaviour();
 });
-
-
 
 equalButton.addEventListener('click', () => {
     display.value = eval(calculation).toString();
